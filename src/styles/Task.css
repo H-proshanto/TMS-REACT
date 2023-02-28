@@ -1,0 +1,28 @@
+.task_description {
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+}
+
+.tasks_title_container {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+}
+
+.body_title {
+  font-weight:700;
+  font-size: larger;
+}
+
+.mutable_button {
+  background-color: #c4c4c4;
+  border: none;
+  margin-left: 2rem;
+  width: 5rem;
+  height: 1.8rem;
+  border-radius: 7px;
+}
+
+.task_list_container {
+  
+}

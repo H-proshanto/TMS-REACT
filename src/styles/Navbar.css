@@ -1,0 +1,79 @@
+.navbar {
+  background-color:  rgba(2,141,171,1);
+  display: flex;
+  height: 5rem;
+  justify-content: flex-end;
+  flex-direction: row;
+}
+
+.nav_itemList {
+    height: 1.5rem;
+    display: inherit;
+    flex-direction: row;
+    list-style-type: none;
+}
+
+.nav_item {
+  margin-right: 10px;
+  border-radius: 5px;
+  padding: 8px;
+}
+
+.nav_item:link,:visited {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.nav_item:hover {
+  background-color: rgba(9,170,205,0.7);
+}
+
+.user_info {
+  height: 1rem;
+  align-items: center;  
+  justify-content: flex-end;
+  display: flex;
+  flex-direction: row;
+  margin-right: 20px;
+  margin-top: 15px;
+}
+
+#user_name {
+  color: #ffffff;
+  margin-right: 1.5rem;
+  font-weight: 300;
+  font-size: medium;
+  font-size: smaller;
+}
+
+#logout_btn {
+  font-size: smaller;
+  font-weight: 100;
+  margin-right: 5px;
+  align-self: center;
+  background: none;
+  border: none;
+  color: #ffffff;
+  text-decoration: underline;
+  margin-top: 3px;
+  border-radius: 15px;
+}
+
+#logout_btn:hover {
+  background-color: rgb(9,170,205);
+}
+
+.nav-right {
+  display: flex;
+  flex-direction: column;
+  height: inherit;
+}
+
+.center_nav {
+  height: 3rem;
+}
+
+.nav_item_container {
+  display: flex;
+  align-items: center;
+}

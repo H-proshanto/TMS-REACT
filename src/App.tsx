@@ -1,24 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import Navbar from "./components/common/Navbar";
+import "./styles/App.css";
+import { Outlet } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { NavItem } from "./react-app-env";
+import { getNavbarItems } from "./utils/helpers/navbar";
 
 function App() {
+  const { isLoggedIn } = useSelector((state: any) => state?.user);
+  const [navItems, setNavItems] = useState<NavItem[]>(
+    getNavbarItems(isLoggedIn)
+  );
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate("/home", { replace: false });
+    } else {
+      navigate("login", { replace: true });
+    }
+  }, []);
+
+  useEffect(() => {
+    setNavItems(getNavbarItems(isLoggedIn));
+  }, [isLoggedIn]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Navbar navItemList={navItems} />
+      <Outlet />
     </div>
   );
 }

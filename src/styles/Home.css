@@ -1,0 +1,40 @@
+.title_container {
+  margin: 1.5rem;
+}
+
+.home_body {
+  margin-top: 7rem;
+}
+
+.title_description {
+  font-weight: 500;
+  font-size: larger;
+  font-family: sans-serif;
+}
+
+.home_btn_container {
+  display: flex;
+  height: 20rem;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.home_btn {
+  background-color: rgb(2,141,171);
+  color: #ffffff;
+  height: 8rem;
+  width: 20rem;
+  border: none;
+  border-radius: 12px;
+  border-color: none;
+  transition: 5ms;
+}
+
+.home_btn:hover {
+  background-color: rgb(9,170,205);
+  transition: 0ms;
+}
+
+.home_btn:active {
+  background-color: rgba(2,141,171,0.8);
+}
