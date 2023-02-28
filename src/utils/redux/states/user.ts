@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { UserType } from "../../../react-app-env";
 import { loginMethod, registrationMethod } from "../../api/public/auth";
+import { STORAGE_AUTH_KEY } from "../../storage/config";
 
 const initialState: UserType = {
   status: "idle",
@@ -23,11 +24,11 @@ export const registration: any = createAsyncThunk(
 );
 
 const saveUser = (state: UserType) => {
-  localStorage.setItem("@user", JSON.stringify(state));
+  localStorage.setItem(STORAGE_AUTH_KEY, JSON.stringify(state));
 };
 
 const init = () => {
-  const retrievedState = localStorage.getItem("@user");
+  const retrievedState = localStorage.getItem(STORAGE_AUTH_KEY);
   const parsedState: UserType = retrievedState && JSON.parse(retrievedState);
   return retrievedState ? parsedState : initialState;
 };

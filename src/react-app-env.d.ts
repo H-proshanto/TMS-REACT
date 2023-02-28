@@ -34,3 +34,22 @@ export type NavItem = {
   name: string;
   link: string;
 };
+
+export type memberItem = {
+  createdAt: string;
+  id: number;
+  name: string;
+  updatedAt: string;
+  userId: number;
+};
+
+export type TaskItem = {
+  Member: memberItem;
+  createdAt: string;
+  description: string;
+  id: number;
+  memberId: number;
+  title: string;
+  updatedAt: string;
+  userId: number;
+};

@@ -23,6 +23,31 @@
   border-radius: 7px;
 }
 
-.task_list_container {
-  
+.mutable_button:hover {
+  background-color: rgb(220, 221, 223);
+}
+
+.mutable_button:active {
+  background-color: rgb(167, 168, 170);
+}
+
+.task_list {
+  padding-left: 0;
+}
+
+.task_item {
+  display: flex;
+  align-items: flex-start;
+  color: #4c87de;
+  list-style: none;
+  margin-bottom: 2rem;
+}
+
+.task_item_link {
+  color: #4c87de;
+}
+
+.member_link {
+  color: #4c87de;
+  margin-left: 30rem;
 }
