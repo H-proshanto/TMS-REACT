@@ -1,9 +1,31 @@
 import * as React from "react";
-import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useLoaderData, useNavigate } from "react-router-dom";
+import { MemberItem, TaskItem } from "../react-app-env";
 import "../styles/Home.css";
+import { getAllMembers } from "../utils/api/private/members";
+import { getAllTasks } from "../utils/api/private/tasks";
+import { setMemberList } from "../utils/redux/states/member";
+import { setTaskList } from "../utils/redux/states/task";
+
+export const loader = async () => {
+  const { tasks }: { tasks: TaskItem[] } = await getAllTasks();
+  const { members }: { members: MemberItem[] } = await getAllMembers();
+  return { tasks, members };
+};
 
 const Home = () => {
   const navigate = useNavigate();
+  const loaderData = useLoaderData() as {
+    tasks: TaskItem[];
+    members: MemberItem[];
+  };
+  const dispatch = useDispatch();
+
+  React.useEffect(() => {
+    dispatch(setMemberList(loaderData.members));
+    dispatch(setTaskList(loaderData.tasks));
+  }, [loaderData]);
 
   return (
     <div className="title_container">

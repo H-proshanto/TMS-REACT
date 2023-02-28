@@ -1,17 +1,12 @@
-import * as React from "react";
-import { NavLink, useLoaderData, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { MemberItem } from "../react-app-env";
 import "../styles/Member.css";
-import { getAllMembers } from "../utils/api/private/members";
-
-export const loader = async () => {
-  const response: { members: MemberItem[] } = await getAllMembers();
-  return response.members;
-};
+import { useAppSelector } from "../utils/redux/hooks";
 
 const Members = () => {
-  const memberList = useLoaderData() as MemberItem[];
+  const memberList = useAppSelector((state) => state.memberList);
   const navigate = useNavigate();
+
   const handleClick = () => {
     navigate(`/members/add`);
   };

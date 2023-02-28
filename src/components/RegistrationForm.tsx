@@ -55,7 +55,7 @@ const resolver: Resolver<RegistrationFormData> = async (values) => {
   }
 
   return {
-    values: values.email ? values : {},
+    values: values ? values : {},
     errors: errors,
   };
 };

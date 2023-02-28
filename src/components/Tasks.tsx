@@ -1,16 +1,10 @@
-import * as React from "react";
-import { NavLink, useLoaderData, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { TaskItem } from "../react-app-env";
 import "../styles/Task.css";
-import { getAllTasks } from "../utils/api/private/tasks";
-
-export const loader = async () => {
-  const response: { tasks: TaskItem[] } = await getAllTasks();
-  return response.tasks;
-};
+import { useAppSelector } from "../utils/redux/hooks";
 
 const Tasks = () => {
-  const taskList = useLoaderData() as TaskItem[];
+  const taskList = useAppSelector((state) => state.taskList);
   const navigate = useNavigate();
 
   const handleClick = () => {

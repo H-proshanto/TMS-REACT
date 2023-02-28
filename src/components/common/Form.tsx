@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Resolver, useForm } from "react-hook-form";
-import { useLoaderData, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import {
   InputItem,
   MemberFormData,
@@ -9,6 +9,7 @@ import {
 } from "../../react-app-env";
 import "../../styles/Form.css";
 import { onSubmitFnSelector } from "../../utils/helpers/submit-btn";
+import { useAppSelector } from "../../utils/redux/hooks";
 
 const Form: React.FC<{
   resolver: Resolver<MemberFormData, any> | Resolver<TaskFormData, any>;
@@ -16,7 +17,7 @@ const Form: React.FC<{
   pageTitle: string;
   hasMemberList?: boolean;
 }> = ({ resolver, inputList, pageTitle, hasMemberList = false }) => {
-  const memberList = useLoaderData() as MemberItem[];
+  const memberList = useAppSelector((state) => state.memberList);
   const location = useLocation();
   const navigate = useNavigate();
   const {

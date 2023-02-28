@@ -6,11 +6,11 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ErrorPage from "./components/common/ErrorPage";
 import LoginForm from "./components/LoginForm";
 import RegistrationForm from "./components/RegistrationForm";
-import Home from "./components/Home";
+import Home, { loader as statesLoader } from "./components/Home";
 import { store } from "./utils/redux/store";
 import { Provider } from "react-redux";
-import Tasks, { loader as allTaskLoader } from "./components/Tasks";
-import Members, { loader as allMemberLoader } from "./components/Members";
+import Tasks from "./components/Tasks";
+import Members from "./components/Members";
 import Form from "./components/common/Form";
 import {
   memberFormInputList,
@@ -34,7 +34,6 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: <LoginForm />,
-        // loader: contactLoader,
       },
       {
         path: "/register",
@@ -43,16 +42,15 @@ const router = createBrowserRouter([
       {
         path: "/home",
         element: <Home />,
+        loader: statesLoader,
       },
       {
         path: "/tasks",
         element: <Tasks />,
-        loader: allTaskLoader,
       },
       {
         path: "/members",
         element: <Members />,
-        loader: allMemberLoader,
       },
       {
         path: "/members/:memberId/edit",
@@ -85,7 +83,6 @@ const router = createBrowserRouter([
             hasMemberList
           />
         ),
-        loader: allMemberLoader,
       },
       {
         path: "/tasks/add",
@@ -97,7 +94,6 @@ const router = createBrowserRouter([
             hasMemberList
           />
         ),
-        loader: allMemberLoader,
       },
     ],
   },

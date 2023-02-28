@@ -4,12 +4,11 @@ import { MemberItem } from "../../../react-app-env";
 const initialState: MemberItem[] = [];
 
 export const memberListSlice = createSlice({
-  name: "user",
+  name: "memberList",
   initialState,
   reducers: {
-    setMemberList: (state, payload) => {
-      console.log(payload);
-      return state;
+    setMemberList: (_, params) => {
+      return [...params.payload];
     },
   },
 });

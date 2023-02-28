@@ -39,7 +39,7 @@ const resolver: Resolver<LoginFormData> = async (values) => {
   }
 
   return {
-    values: values.email ? values : {},
+    values: values ? values : {},
     errors: errors,
   };
 };
