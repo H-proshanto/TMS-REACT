@@ -41,6 +41,8 @@
   color: #4c87de;
   list-style: none;
   margin-bottom: 2rem;
+  width: 35rem;
+  justify-content: space-between;
 }
 
 .item_link {
@@ -49,5 +51,4 @@
 
 .member_link {
   color: #4c87de;
-  margin-left: 30rem;
 }

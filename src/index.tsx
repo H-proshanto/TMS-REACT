@@ -11,6 +11,15 @@ import { store } from "./utils/redux/store";
 import { Provider } from "react-redux";
 import Tasks, { loader as allTaskLoader } from "./components/Tasks";
 import Members, { loader as allMemberLoader } from "./components/Members";
+import Form from "./components/common/Form";
+import {
+  memberFormInputList,
+  taskFormInputList,
+} from "./utils/helpers/form-input";
+import {
+  memberFormResolver,
+  taskFormResolver,
+} from "./utils/helpers/resolvers";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -44,6 +53,48 @@ const router = createBrowserRouter([
         path: "/members",
         element: <Members />,
         loader: allMemberLoader,
+      },
+      {
+        path: "/members/:memberId/edit",
+        element: (
+          <Form
+            inputList={memberFormInputList}
+            resolver={memberFormResolver}
+            pageTitle="Edit member"
+          />
+        ),
+        // loader: SingleMemberLoader,
+      },
+      {
+        path: "/members/add",
+        element: (
+          <Form
+            inputList={memberFormInputList}
+            resolver={memberFormResolver}
+            pageTitle="Add member"
+          />
+        ),
+      },
+      {
+        path: "/tasks/:taskId/edit",
+        element: (
+          <Form
+            inputList={taskFormInputList}
+            resolver={taskFormResolver}
+            pageTitle="Edit task"
+          />
+        ),
+        // loader: SingleTaskLoader,
+      },
+      {
+        path: "/tasks/add",
+        element: (
+          <Form
+            inputList={taskFormInputList}
+            resolver={taskFormResolver}
+            pageTitle="Add task"
+          />
+        ),
       },
     ],
   },

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { NavLink, useLoaderData } from "react-router-dom";
+import { NavLink, useLoaderData, useNavigate } from "react-router-dom";
 import { MemberItem } from "../react-app-env";
 import "../styles/Member.css";
 import { getAllMembers } from "../utils/api/private/members";
@@ -11,7 +11,10 @@ export const loader = async () => {
 
 const Members = () => {
   const memberList = useLoaderData() as MemberItem[];
-  console.log(memberList);
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate(`/members/add`);
+  };
 
   return (
     <div className="title_container">
@@ -24,7 +27,9 @@ const Members = () => {
       <section>
         <div className="common_title_container">
           <p className="body_title">Here is all tasks: </p>
-          <button className="mutable_button">Add new</button>
+          <button onClick={handleClick} className="mutable_button">
+            Add new
+          </button>
         </div>
         <div>
           <ol className="list">
@@ -32,7 +37,7 @@ const Members = () => {
               return (
                 <li key={memberItem.id} className="item">
                   <NavLink
-                    to={`/members:${memberItem.id}`}
+                    to={`/members/${memberItem.id}/edit`}
                     className="item_link"
                   >
                     {memberItem.name}

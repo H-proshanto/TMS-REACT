@@ -1,5 +1,5 @@
 import * as React from "react";
-import { NavLink, useLoaderData } from "react-router-dom";
+import { NavLink, useLoaderData, useNavigate } from "react-router-dom";
 import { TaskItem } from "../react-app-env";
 import "../styles/Task.css";
 import { getAllTasks } from "../utils/api/private/tasks";
@@ -11,6 +11,11 @@ export const loader = async () => {
 
 const Tasks = () => {
   const taskList = useLoaderData() as TaskItem[];
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate("/tasks/add");
+  };
 
   return (
     <div className="title_container">
@@ -23,18 +28,20 @@ const Tasks = () => {
       <section>
         <div className="common_title_container">
           <p className="body_title">Here is all tasks: </p>
-          <button className="mutable_button">Add new</button>
+          <button onClick={handleClick} className="mutable_button">
+            Add new
+          </button>
         </div>
         <div>
           <ol className="list">
             {taskList.map((taskItem: TaskItem) => {
               return (
                 <li key={taskItem.id} className="item">
-                  <NavLink to={`/tasks:${taskItem.id}`} className="item_link">
+                  <NavLink to={`/tasks/${taskItem.id}`} className="item_link">
                     {`${taskItem.id}. ${taskItem.title}`}
                   </NavLink>
                   <NavLink
-                    to={`/members:${taskItem.memberId}`}
+                    to={`/members/:${taskItem.memberId}`}
                     className="member_link"
                   >
                     {taskItem.Member.name}

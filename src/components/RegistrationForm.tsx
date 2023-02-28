@@ -75,6 +75,7 @@ const RegistrationForm = () => {
       navigate("/home", { replace: false });
     }
   }, [status]);
+
   return (
     <div id="login">
       <header id="logo_container">

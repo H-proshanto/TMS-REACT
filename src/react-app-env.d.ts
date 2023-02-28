@@ -17,6 +17,26 @@ export type RegistrationFormData = {
   password2: string;
 };
 
+export type TaskFormData = {
+  title: string;
+  description: string;
+  memberId: number;
+};
+
+export type TaskFormErrors = {
+  title?: formErrorObject;
+  description?: formErrorObject;
+  memberId?: formErrorObject;
+};
+
+export type MemberFormData = {
+  name: string;
+};
+
+export type MemberFormErrors = {
+  name?: formErrorObject;
+};
+
 export interface UserType {
   status: string;
   isLoggedIn: boolean;
@@ -52,4 +72,11 @@ export type TaskItem = {
   title: string;
   updatedAt: string;
   userId: number;
+};
+
+export type InputItem = {
+  id: string;
+  key: string;
+  label: string;
+  placeholder: string;
 };
