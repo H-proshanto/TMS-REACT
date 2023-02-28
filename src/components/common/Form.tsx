@@ -1,7 +1,12 @@
 import * as React from "react";
 import { Resolver, useForm } from "react-hook-form";
-import { useLocation, useNavigate } from "react-router-dom";
-import { InputItem, MemberFormData, TaskFormData } from "../../react-app-env";
+import { useLoaderData, useLocation, useNavigate } from "react-router-dom";
+import {
+  InputItem,
+  MemberFormData,
+  MemberItem,
+  TaskFormData,
+} from "../../react-app-env";
 import "../../styles/Form.css";
 import { onSubmitFnSelector } from "../../utils/helpers/submit-btn";
 
@@ -9,7 +14,9 @@ const Form: React.FC<{
   resolver: Resolver<MemberFormData, any> | Resolver<TaskFormData, any>;
   inputList: InputItem[];
   pageTitle: string;
-}> = ({ resolver, inputList, pageTitle }) => {
+  hasMemberList?: boolean;
+}> = ({ resolver, inputList, pageTitle, hasMemberList = false }) => {
+  const memberList = useLoaderData() as MemberItem[];
   const location = useLocation();
   const navigate = useNavigate();
   const {
@@ -69,6 +76,18 @@ const Form: React.FC<{
               </div>
             );
           })}
+          {hasMemberList && (
+            <div className="member_list_container">
+              <label htmlFor="memeberId" className="member_list_label">
+                Assign to:
+              </label>
+              <select {...register("memberId")} className="member_list">
+                {memberList.map((memerItem: MemberItem, index: number) => {
+                  return <option value={memerItem.id}>{memerItem.name}</option>;
+                })}
+              </select>
+            </div>
+          )}
           <div className="form_button_container">
             <button className="mutable_button" onClick={handleCancelClick}>
               Cancel

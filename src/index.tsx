@@ -82,9 +82,10 @@ const router = createBrowserRouter([
             inputList={taskFormInputList}
             resolver={taskFormResolver}
             pageTitle="Edit task"
+            hasMemberList
           />
         ),
-        // loader: SingleTaskLoader,
+        loader: allMemberLoader,
       },
       {
         path: "/tasks/add",
@@ -93,8 +94,10 @@ const router = createBrowserRouter([
             inputList={taskFormInputList}
             resolver={taskFormResolver}
             pageTitle="Add task"
+            hasMemberList
           />
         ),
+        loader: allMemberLoader,
       },
     ],
   },

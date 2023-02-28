@@ -32,5 +32,24 @@
   border-color: rgb(20, 20, 20);
   border-width: 1px;
   padding-left: 15px;
-  /* text-align:start; */
+}
+
+.member_list_container {
+  margin-top: 2rem;
+}
+
+.member_list_label {
+  font-size: larger;
+}
+
+.member_list {
+  margin-left: 2rem;
+  height: 2rem;
+  width: 15rem;
+  text-align: center;
+}
+
+.member_list:active {
+  outline: none;
+  border-color: rgba(2,141,171,255);
 }
