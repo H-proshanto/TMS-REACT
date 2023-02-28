@@ -3,7 +3,7 @@
   margin-bottom: 4rem;
 }
 
-.tasks_title_container {
+.common_title_container {
   align-items: center;
   display: flex;
   flex-direction: row;
@@ -31,11 +31,11 @@
   background-color: rgb(167, 168, 170);
 }
 
-.task_list {
+.list {
   padding-left: 0;
 }
 
-.task_item {
+.item {
   display: flex;
   align-items: flex-start;
   color: #4c87de;
@@ -43,7 +43,7 @@
   margin-bottom: 2rem;
 }
 
-.task_item_link {
+.item_link {
   color: #4c87de;
 }
 

@@ -2,7 +2,6 @@ import * as React from "react";
 import { NavLink, useLoaderData } from "react-router-dom";
 import { TaskItem } from "../react-app-env";
 import "../styles/Task.css";
-import { privateAxios } from "../utils/api/axios";
 import { getAllTasks } from "../utils/api/private/tasks";
 
 export const loader = async () => {
@@ -21,20 +20,17 @@ const Tasks = () => {
           You will find all tasks here.
         </p>
       </section>
-      <section className="task_body">
-        <div className="tasks_title_container">
+      <section>
+        <div className="common_title_container">
           <p className="body_title">Here is all tasks: </p>
           <button className="mutable_button">Add new</button>
         </div>
         <div>
-          <ol className="task_list">
+          <ol className="list">
             {taskList.map((taskItem: TaskItem) => {
               return (
-                <li key={taskItem.id} className="task_item">
-                  <NavLink
-                    to={`/tasks:${taskItem.id}`}
-                    className="task_item_link"
-                  >
+                <li key={taskItem.id} className="item">
+                  <NavLink to={`/tasks:${taskItem.id}`} className="item_link">
                     {`${taskItem.id}. ${taskItem.title}`}
                   </NavLink>
                   <NavLink

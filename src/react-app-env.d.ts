@@ -35,7 +35,7 @@ export type NavItem = {
   link: string;
 };
 
-export type memberItem = {
+export type MemberItem = {
   createdAt: string;
   id: number;
   name: string;
@@ -44,7 +44,7 @@ export type memberItem = {
 };
 
 export type TaskItem = {
-  Member: memberItem;
+  Member: MemberItem;
   createdAt: string;
   description: string;
   id: number;

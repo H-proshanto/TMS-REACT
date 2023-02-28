@@ -10,6 +10,7 @@ import Home from "./components/Home";
 import { store } from "./utils/redux/store";
 import { Provider } from "react-redux";
 import Tasks, { loader as allTaskLoader } from "./components/Tasks";
+import Members, { loader as allMemberLoader } from "./components/Members";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -38,6 +39,11 @@ const router = createBrowserRouter([
         path: "/tasks",
         element: <Tasks />,
         loader: allTaskLoader,
+      },
+      {
+        path: "/members",
+        element: <Members />,
+        loader: allMemberLoader,
       },
     ],
   },
