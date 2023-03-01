@@ -7,13 +7,13 @@ export const memberListSlice = createSlice({
   name: "memberList",
   initialState,
   reducers: {
-    setMemberList: (_, params) => {
-      return [...params.payload];
+    setMemberList: (_, action) => {
+      return [...action.payload];
     },
-    updateMemberList: (state, params) => {
+    updateMemberList: (state, action) => {
       const updatedMemberList = state.map((memberItem) => {
-        if (memberItem.id === params.payload.id) {
-          return params.payload;
+        if (memberItem.id === action.payload.id) {
+          return action.payload;
         } else {
           return memberItem;
         }

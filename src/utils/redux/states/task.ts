@@ -7,13 +7,13 @@ export const taskListSlice = createSlice({
   name: "taskList",
   initialState,
   reducers: {
-    setTaskList: (_, params) => {
-      return [...params.payload];
+    setTaskList: (_, action) => {
+      return [...action.payload];
     },
-    updateTaskList: (state, params) => {
+    updateTaskList: (state, action) => {
       const updatedTaskList = state.map((taskItem) => {
-        if (taskItem.id === params.payload.id) {
-          return params.payload;
+        if (taskItem.id === action.payload.id) {
+          return action.payload;
         } else {
           return taskItem;
         }
