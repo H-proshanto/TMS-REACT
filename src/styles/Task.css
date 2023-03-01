@@ -21,6 +21,7 @@
   width: 5rem;
   height: 1.8rem;
   border-radius: 7px;
+  cursor: pointer;
 }
 
 .mutable_button:hover {
@@ -47,8 +48,14 @@
 
 .item_link {
   color: #4c87de;
+  border: none;
+  background: none;
+  cursor: pointer;
+  text-decoration: underline;
 }
 
 .member_link {
   color: #4c87de;
+  border: none;
+  background: none;
 }

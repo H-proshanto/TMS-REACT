@@ -20,6 +20,7 @@ import {
   memberFormResolver,
   taskFormResolver,
 } from "./utils/helpers/resolvers";
+import ItemView from "./components/common/ItemView";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -94,6 +95,14 @@ const router = createBrowserRouter([
             hasMemberList
           />
         ),
+      },
+      {
+        path: "/members/:memberId",
+        element: <ItemView />,
+      },
+      {
+        path: "/tasks/:taskId",
+        element: <ItemView />,
       },
     ],
   },

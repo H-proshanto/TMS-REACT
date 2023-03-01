@@ -27,23 +27,34 @@ const Tasks = () => {
           </button>
         </div>
         <div>
-          <ol className="list">
+          <ul className="list">
             {taskList.map((taskItem: TaskItem) => {
               return (
                 <li key={taskItem.id} className="item">
-                  <NavLink to={`/tasks/${taskItem.id}`} className="item_link">
-                    {`${taskItem.id}. ${taskItem.title}`}
-                  </NavLink>
-                  <NavLink
-                    to={`/members/:${taskItem.memberId}`}
-                    className="member_link"
+                  <button
+                    onClick={() =>
+                      navigate(`/tasks/${taskItem.id}`, {
+                        state: { item: taskItem },
+                      })
+                    }
+                    className="item_link"
+                  >
+                    {taskItem.title}
+                  </button>
+                  <button
+                    onClick={() =>
+                      navigate(`/members/${taskItem.memberId}`, {
+                        state: { item: taskItem.Member },
+                      })
+                    }
+                    className="item_link"
                   >
                     {taskItem.Member.name}
-                  </NavLink>
+                  </button>
                 </li>
               );
             })}
-          </ol>
+          </ul>
         </div>
       </section>
     </div>

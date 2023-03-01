@@ -57,6 +57,7 @@
   text-decoration: underline;
   margin-top: 3px;
   border-radius: 15px;
+  cursor: pointer;
 }
 
 #logout_btn:hover {

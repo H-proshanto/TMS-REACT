@@ -1,0 +1,46 @@
+.item_view_container {
+  margin: 1.5rem;
+}
+
+.item_view_btn_container {
+  display: flexbox;
+  flex-direction: row;
+  align-items: center;
+}
+
+.item_view_right_btns {
+  position: relative;
+  float: right; 
+}
+
+.back_btn {
+  border: none;
+  background: none;
+  font-size: larger;
+  text-decoration: underline;
+  color: #4c87de;
+  cursor: pointer;
+}
+
+.view_body {
+  align-items: flex-start;
+}
+
+.view_task {
+  list-style: none;
+  margin-top: 2rem;
+}
+
+.view_text_content {
+  margin-left: 5px;
+}
+
+.view_task_list {
+  padding-left: 0;
+  margin-left: 5px;
+  margin-top: 5rem;
+}
+
+.assigned_to{
+  margin-top: 5rem;
+}

@@ -1,4 +1,4 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { MemberItem } from "../react-app-env";
 import "../styles/Member.css";
 import { useAppSelector } from "../utils/redux/hooks";
@@ -27,21 +27,25 @@ const Members = () => {
           </button>
         </div>
         <div>
-          <ol className="list">
+          <ul className="list">
             {memberList.map((memberItem: MemberItem) => {
               return (
                 <li key={memberItem.id} className="item">
-                  <NavLink
-                    to={`/members/${memberItem.id}/edit`}
+                  <button
+                    onClick={() =>
+                      navigate(`/members/${memberItem.id}`, {
+                        state: { item: memberItem },
+                      })
+                    }
                     className="item_link"
                   >
                     {memberItem.name}
-                  </NavLink>
+                  </button>
                   <p className="member_item_right">{2}</p>
                 </li>
               );
             })}
-          </ol>
+          </ul>
         </div>
       </section>
     </div>
