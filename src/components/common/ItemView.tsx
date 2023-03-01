@@ -16,10 +16,16 @@ export const loader = async ({
 }) => {
   if (request.url.includes("members")) {
     const response = await getSingleMember(params.memberId);
-    return response.member;
+    if (response.status !== 200) {
+      throw new Response("Something Occured", { status: 404 });
+    }
+    return response.data.member;
   } else {
     const response = await getSingleTask(params.taskId);
-    return response.task;
+    if (response.status !== 200) {
+      throw new Response("Something Occured", { status: 404 });
+    }
+    return response.data.task;
   }
 };
 

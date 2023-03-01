@@ -8,7 +8,7 @@ export const getAllMembers = async () => {
     url: API_MEMBERS_URL,
   });
 
-  return response.data;
+  return response;
 };
 
 export const getSingleMember = async (memberId: number) => {
@@ -18,7 +18,7 @@ export const getSingleMember = async (memberId: number) => {
     url,
   });
 
-  return response.data;
+  return response;
 };
 
 export const addMember = async (data: MemberFormData) => {

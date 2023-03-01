@@ -8,7 +8,10 @@ import { setTaskList } from "../utils/redux/states/task";
 
 export const taskLoader = async () => {
   const response = await getAllTasks();
-  return response.tasks;
+  if (response.status !== 200) {
+    throw new Response("Something Occured", { status: 404 });
+  }
+  return response.data.tasks;
 };
 
 const Tasks = () => {

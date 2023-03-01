@@ -8,7 +8,10 @@ import { setMemberList } from "../utils/redux/states/member";
 
 export const membersLoader = async () => {
   const response = await getAllMembers();
-  return response.members;
+  if (response.status !== 200) {
+    throw new Response("Something Occured", { status: 404 });
+  }
+  return response.data.members;
 };
 
 const Members = () => {

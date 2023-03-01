@@ -9,9 +9,15 @@ import { setMemberList } from "../utils/redux/states/member";
 import { setTaskList } from "../utils/redux/states/task";
 
 export const loader = async () => {
-  const { tasks }: { tasks: TaskItem[] } = await getAllTasks();
-  const { members }: { members: MemberItem[] } = await getAllMembers();
-  return { tasks, members };
+  const taskResponse = await getAllTasks();
+  const memberResponse = await getAllMembers();
+  if (taskResponse.status !== 200 || memberResponse.status !== 200) {
+    throw new Response("Something Occured", { status: 404 });
+  }
+  return {
+    tasks: taskResponse.data.tasks,
+    members: memberResponse.data.members,
+  };
 };
 
 const Home = () => {

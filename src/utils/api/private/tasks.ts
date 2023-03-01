@@ -8,7 +8,7 @@ export const getAllTasks = async () => {
     url: API_TASKS_URL,
   });
 
-  return response.data;
+  return response;
 };
 
 export const getSingleTask = async (taskId: number) => {
@@ -18,7 +18,7 @@ export const getSingleTask = async (taskId: number) => {
     url,
   });
 
-  return response.data;
+  return response;
 };
 
 export const addTask = async (data: TaskFormData) => {
