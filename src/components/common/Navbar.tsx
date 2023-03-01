@@ -4,6 +4,7 @@ import { NavItem } from "../../react-app-env";
 import "../../styles/Navbar.css";
 import { useAppDispatch, useAppSelector } from "../../utils/redux/hooks";
 import { logout } from "../../utils/redux/states/user";
+import logo from "../../assets/logo.png";
 
 const Navbar: React.FC<{ navItemList: NavItem[] }> = ({ navItemList }) => {
   const { info, isLoggedIn } = useAppSelector((state) => state?.user);
@@ -17,7 +18,11 @@ const Navbar: React.FC<{ navItemList: NavItem[] }> = ({ navItemList }) => {
 
   return (
     <nav className="navbar">
-      <div className="nav-right">
+      <div className="nav_left">
+        <img className="nav_logo" src={logo} alt="phoenix logo" />
+        <h3 className="nav_title">Task Management</h3>
+      </div>
+      <div className="nav_right">
         {isLoggedIn && (
           <div className="user_info">
             <p id="user_name">{`Mr. ${info.name}`}</p>

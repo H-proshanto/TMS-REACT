@@ -1,6 +1,6 @@
 .navbar {
   background-color:  rgba(2,141,171,1);
-  display: flex;
+  display: flexbox;
   height: 5rem;
   justify-content: flex-end;
   flex-direction: row;
@@ -64,10 +64,12 @@
   background-color: rgb(9,170,205);
 }
 
-.nav-right {
+.nav_right {
   display: flex;
   flex-direction: column;
   height: inherit;
+  position: relative;
+  float: right;
 }
 
 .center_nav {
@@ -77,4 +79,23 @@
 .nav_item_container {
   display: flex;
   align-items: center;
+}
+
+.nav_left {
+  display: flex;  
+  position: relative;
+  float: left;
+  align-items: center;
+  justify-content: center;
+}
+.nav_logo {
+  height: 5rem;
+  object-fit: contain;
+  margin-left: 1.2rem;
+}
+
+.nav_title {
+  margin-left: 0.5rem;
+  font-weight: 500;
+  color: #ffffff;
 }
