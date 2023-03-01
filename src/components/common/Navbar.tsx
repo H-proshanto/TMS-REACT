@@ -10,7 +10,7 @@ const Navbar: React.FC<{ navItemList: NavItem[] }> = ({ navItemList }) => {
   const { info, isLoggedIn } = useAppSelector((state) => state?.user);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-
+  console.log("hello");
   const handleClick = () => {
     dispatch(logout());
     navigate("/login", { replace: true });
@@ -35,7 +35,12 @@ const Navbar: React.FC<{ navItemList: NavItem[] }> = ({ navItemList }) => {
           {navItemList.map((navItem: NavItem, index: number) => {
             return (
               <li key={index} className="nav_item_container">
-                <NavLink to={navItem.link} className="nav_item">
+                <NavLink
+                  to={navItem.link}
+                  className={({ isActive }) =>
+                    isActive ? "nav_item nav_active" : "nav_item"
+                  }
+                >
                   {navItem.name}
                 </NavLink>
               </li>

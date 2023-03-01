@@ -99,3 +99,7 @@
   font-weight: 500;
   color: #ffffff;
 }
+
+.nav_active {
+  background-color: rgba(9,170,205,0.7);
+}
