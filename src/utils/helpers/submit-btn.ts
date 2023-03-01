@@ -1,5 +1,7 @@
-import { addMember, editMember } from "../api/private/members";
-import { addTask, editTask } from "../api/private/tasks";
+import { addMember, deleteMember, editMember } from "../api/private/members";
+import { addTask, deleteTask, editTask } from "../api/private/tasks";
+import { updateMemberList } from "../redux/states/member";
+import { updateTaskList } from "../redux/states/task";
 
 export const onSubmitFnSelector = (requestUrl: string) => {
   if (requestUrl.includes("tasks")) {
@@ -14,5 +16,21 @@ export const onSubmitFnSelector = (requestUrl: string) => {
     } else {
       return editMember;
     }
+  }
+};
+
+export const dispacthFnSelector = (requestUrl: string) => {
+  if (requestUrl.includes("tasks")) {
+    return updateTaskList;
+  } else {
+    return updateMemberList;
+  }
+};
+
+export const deleteFnSelector = (requestUrl: string) => {
+  if (requestUrl.includes("tasks")) {
+    return deleteTask;
+  } else {
+    return deleteMember;
   }
 };

@@ -1,15 +1,28 @@
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { MemberItem } from "../react-app-env";
 import "../styles/Member.css";
-import { useAppSelector } from "../utils/redux/hooks";
+import { getAllMembers } from "../utils/api/private/members";
+import { useAppDispatch } from "../utils/redux/hooks";
+import { setMemberList } from "../utils/redux/states/member";
+
+export const membersLoader = async () => {
+  const response = await getAllMembers();
+  return response.members;
+};
 
 const Members = () => {
-  const memberList = useAppSelector((state) => state.memberList);
+  const memberList = useLoaderData() as MemberItem[];
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   const handleClick = () => {
     navigate(`/members/add`);
   };
+
+  useEffect(() => {
+    dispatch(setMemberList(memberList));
+  }, [memberList]);
 
   return (
     <div className="title_container">

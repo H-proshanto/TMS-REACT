@@ -1,15 +1,28 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { TaskItem } from "../react-app-env";
 import "../styles/Task.css";
-import { useAppSelector } from "../utils/redux/hooks";
+import { getAllTasks } from "../utils/api/private/tasks";
+import { useAppDispatch } from "../utils/redux/hooks";
+import { setTaskList } from "../utils/redux/states/task";
+
+export const taskLoader = async () => {
+  const response = await getAllTasks();
+  return response.tasks;
+};
 
 const Tasks = () => {
-  const taskList = useAppSelector((state) => state.taskList);
+  const taskList = useLoaderData() as TaskItem[];
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   const handleClick = () => {
     navigate("/tasks/add");
   };
+
+  useEffect(() => {
+    dispatch(setTaskList(taskList));
+  }, [taskList]);
 
   return (
     <div className="title_container">

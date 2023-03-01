@@ -10,8 +10,18 @@ export const memberListSlice = createSlice({
     setMemberList: (_, params) => {
       return [...params.payload];
     },
+    updateMemberList: (state, params) => {
+      const updatedMemberList = state.map((memberItem) => {
+        if (memberItem.id === params.payload.id) {
+          return params.payload;
+        } else {
+          return memberItem;
+        }
+      });
+      return [...updatedMemberList];
+    },
   },
 });
 
-export const { setMemberList } = memberListSlice.actions;
+export const { setMemberList, updateMemberList } = memberListSlice.actions;
 export default memberListSlice.reducer;

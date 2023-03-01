@@ -1,4 +1,4 @@
-import { TaskFormData } from "../../../react-app-env";
+import { TaskEditFormData, TaskFormData } from "../../../react-app-env";
 import { privateAxios } from "../axios";
 import { API_TASKS_URL } from "../config";
 
@@ -31,17 +31,18 @@ export const addTask = async (data: TaskFormData) => {
   return response.data;
 };
 
-export const editTask = async (data: TaskFormData) => {
+export const editTask = async (data: TaskEditFormData) => {
+  const url = `${API_TASKS_URL}/${data.id}`;
   const response = await privateAxios({
     method: "PATCH",
-    url: API_TASKS_URL,
+    url,
     data,
   });
 
   return response.data;
 };
 
-export const deleteTask = async (taskId: number) => {
+export const deleteTask = async (taskId: string) => {
   const url = `${API_TASKS_URL}/${taskId}`;
   const response = await privateAxios({
     method: "DELETE",

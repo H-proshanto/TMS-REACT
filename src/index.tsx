@@ -9,8 +9,8 @@ import RegistrationForm from "./components/RegistrationForm";
 import Home, { loader as statesLoader } from "./components/Home";
 import { store } from "./utils/redux/store";
 import { Provider } from "react-redux";
-import Tasks from "./components/Tasks";
-import Members from "./components/Members";
+import Tasks, { taskLoader } from "./components/Tasks";
+import Members, { membersLoader } from "./components/Members";
 import Form from "./components/common/Form";
 import {
   memberFormInputList,
@@ -20,7 +20,7 @@ import {
   memberFormResolver,
   taskFormResolver,
 } from "./utils/helpers/resolvers";
-import ItemView from "./components/common/ItemView";
+import ItemView, { loader as itemLoader } from "./components/common/ItemView";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -48,10 +48,12 @@ const router = createBrowserRouter([
       {
         path: "/tasks",
         element: <Tasks />,
+        loader: taskLoader,
       },
       {
         path: "/members",
         element: <Members />,
+        loader: membersLoader,
       },
       {
         path: "/members/:memberId/edit",
@@ -99,10 +101,12 @@ const router = createBrowserRouter([
       {
         path: "/members/:memberId",
         element: <ItemView />,
+        loader: itemLoader,
       },
       {
         path: "/tasks/:taskId",
         element: <ItemView />,
+        loader: itemLoader,
       },
     ],
   },

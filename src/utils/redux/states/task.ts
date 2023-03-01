@@ -10,8 +10,18 @@ export const taskListSlice = createSlice({
     setTaskList: (_, params) => {
       return [...params.payload];
     },
+    updateTaskList: (state, params) => {
+      const updatedTaskList = state.map((taskItem) => {
+        if (taskItem.id === params.payload.id) {
+          return params.payload;
+        } else {
+          return taskItem;
+        }
+      });
+      return [...updatedTaskList];
+    },
   },
 });
 
-export const { setTaskList } = taskListSlice.actions;
+export const { setTaskList, updateTaskList } = taskListSlice.actions;
 export default taskListSlice.reducer;

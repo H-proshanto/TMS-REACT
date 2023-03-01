@@ -23,6 +23,10 @@ export type TaskFormData = {
   memberId: number;
 };
 
+export interface TaskEditFormData extends TaskFormData {
+  id: number | string;
+}
+
 export type TaskFormErrors = {
   title?: formErrorObject;
   description?: formErrorObject;
@@ -32,6 +36,10 @@ export type TaskFormErrors = {
 export type MemberFormData = {
   name: string;
 };
+
+export interface MemberEditFormData extends MemberFormData {
+  id: number | string;
+}
 
 export type MemberFormErrors = {
   name?: formErrorObject;

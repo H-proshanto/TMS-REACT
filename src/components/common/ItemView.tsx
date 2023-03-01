@@ -1,28 +1,53 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useLoaderData, useLocation, useNavigate } from "react-router-dom";
+import { MemberItem } from "../../react-app-env";
 import "../../styles/ItemView.css";
+import { getSingleMember } from "../../utils/api/private/members";
+import { getSingleTask } from "../../utils/api/private/tasks";
 import { useAppSelector } from "../../utils/redux/hooks";
+import Confirm from "./Confirm";
+
+export const loader = async ({
+  request,
+  params,
+}: {
+  request: any;
+  params: any;
+}) => {
+  if (request.url.includes("members")) {
+    const response = await getSingleMember(params.memberId);
+    return response.member;
+  } else {
+    const response = await getSingleTask(params.taskId);
+    return response.task;
+  }
+};
 
 const ItemView = () => {
+  const item: any = useLoaderData();
+  const [modalOpen, setModalOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
-  const options = location.state;
   const taskList = useAppSelector((state) =>
-    options?.item?.name ? state.taskList : null
-  )?.filter((taskItem) => taskItem.memberId === options?.item?.id);
-  console.log(taskList);
+    item?.name ? state.taskList : null
+  )?.filter((taskItem) => taskItem.memberId === item?.id);
 
   const handleBackBtnClick = () => {
     navigate(-1);
   };
   const handleEditBtnClick = () => {
-    navigate(`${location.pathname}/edit`);
+    navigate(`${location.pathname}/edit`, {
+      state: { item, previousPath: location.pathname },
+    });
   };
   const handleDeleteBtnClick = () => {
-    navigate(-1);
+    setModalOpen(true);
   };
 
-  return (
-    <div className="item_view_container">
+  return modalOpen ? (
+    <Confirm isOpen={modalOpen} setIsOpen={setModalOpen} />
+  ) : (
+    <div className="item_view_container ">
       <div className="item_view_btn_container">
         <button onClick={handleBackBtnClick} className="back_btn">
           Back
@@ -37,28 +62,28 @@ const ItemView = () => {
         </div>
       </div>
       <div className="view_body">
-        {options?.item?.name && (
+        {item?.name && (
           <div className="view_text_content">
             <h3>Member Name:</h3>
-            <p>{options.item.name}</p>
+            <p>{item.name}</p>
           </div>
         )}
-        {options?.item?.title && (
+        {item?.title && (
           <div className="view_text_content">
             <h3>Task Title:</h3>
-            <p>{options?.item?.title}</p>
+            <p>{item?.title}</p>
           </div>
         )}
-        {options?.item?.description && (
+        {item?.description && (
           <div className="view_text_content">
             <h3>Task Description:</h3>
-            <p>{options?.item?.description}</p>
+            <p>{item?.description}</p>
           </div>
         )}
-        {options?.item?.Member?.name && (
+        {item?.Member?.name && (
           <div className="view_text_content assigned_to">
             <h3>Assigned To:</h3>
-            <p>{options?.item?.Member?.name}</p>
+            <p>{item?.Member?.name}</p>
           </div>
         )}
         <ul className="view_task_list">

@@ -5,6 +5,16 @@ import { API_BASE_URL } from "./config";
 export const publicAxios = axios.create({ baseURL: API_BASE_URL });
 export const privateAxios = axios.create({ baseURL: API_BASE_URL });
 
+privateAxios.interceptors.response.use(
+  (response) => {
+    return response;
+  },
+  (error) => {
+    window.alert("Something Occured");
+    return error;
+  }
+);
+
 const init = () => {
   const token = localStorage.getItem(STORAGE_TOKEN_KEY);
   if (token) {

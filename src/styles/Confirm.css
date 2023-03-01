@@ -1,0 +1,19 @@
+.confirmation_modal {
+  display: flex;
+  flex-direction: row;
+  position:absolute;
+  height: 100vh;  
+  min-width: 100vw;
+  align-items: center;
+  justify-content: center;
+  background-color:rgba(207, 207, 207, 0.404);
+}
+
+.confirmation_confirm  {
+  color: rgb(3, 172, 3);
+}
+
+.confirmation_cancel {
+  color: rgb(198, 0, 0);
+  
+}

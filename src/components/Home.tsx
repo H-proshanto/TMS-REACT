@@ -25,7 +25,7 @@ const Home = () => {
   React.useEffect(() => {
     dispatch(setMemberList(loaderData.members));
     dispatch(setTaskList(loaderData.tasks));
-  }, [loaderData]);
+  }, []);
 
   return (
     <div className="title_container">

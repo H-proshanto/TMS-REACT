@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useEffect } from "react";
 import { Resolver, useForm } from "react-hook-form";
 import { useLocation, useNavigate } from "react-router-dom";
 import {
@@ -8,8 +8,11 @@ import {
   TaskFormData,
 } from "../../react-app-env";
 import "../../styles/Form.css";
-import { onSubmitFnSelector } from "../../utils/helpers/submit-btn";
-import { useAppSelector } from "../../utils/redux/hooks";
+import {
+  dispacthFnSelector,
+  onSubmitFnSelector,
+} from "../../utils/helpers/submit-btn";
+import { useAppDispatch, useAppSelector } from "../../utils/redux/hooks";
 
 const Form: React.FC<{
   resolver: Resolver<MemberFormData, any> | Resolver<TaskFormData, any>;
@@ -20,10 +23,13 @@ const Form: React.FC<{
   const memberList = useAppSelector((state) => state.memberList);
   const location = useLocation();
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const options = location?.state;
   const {
     register,
     formState: { errors },
     handleSubmit,
+    setValue,
   } = useForm<any>({ resolver });
 
   const getErrorMessage = (error: any) => {
@@ -38,6 +44,15 @@ const Form: React.FC<{
     navigate(-1);
   };
 
+  useEffect(() => {
+    setValue("name", options?.item?.name ? options?.item?.name : "");
+    setValue("title", options?.item?.title ? options?.item?.title : "");
+    setValue(
+      "description",
+      options?.item?.description ? options?.item?.description : ""
+    );
+  }, []);
+
   return (
     <div className="form_container">
       <h4>{pageTitle}</h4>
@@ -45,7 +60,10 @@ const Form: React.FC<{
         onSubmit={handleSubmit(
           async (values: MemberFormData | TaskFormData) => {
             const selectedFn: any = onSubmitFnSelector(location.pathname);
-            await selectedFn(values);
+            const formData = options?.item?.id
+              ? { ...values, id: options?.item?.id }
+              : values;
+            await selectedFn(formData);
             navigate(-1);
           }
         )}
@@ -66,7 +84,6 @@ const Form: React.FC<{
                     }
                     {...register(inputItem.id)}
                     placeholder={inputItem.placeholder}
-                    // value={}
                   />
                 </div>
                 {errors[inputItem.key] && (
@@ -84,7 +101,11 @@ const Form: React.FC<{
               </label>
               <select {...register("memberId")} className="member_list">
                 {memberList.map((memerItem: MemberItem, index: number) => {
-                  return <option value={memerItem.id}>{memerItem.name}</option>;
+                  return (
+                    <option key={index} value={memerItem.id}>
+                      {memerItem.name}
+                    </option>
+                  );
                 })}
               </select>
             </div>
