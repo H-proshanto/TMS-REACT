@@ -92,6 +92,7 @@ const LoginForm = () => {
           <input
             className="form_input"
             {...register("password")}
+            type='password'
             placeholder="Enter your password"
           />
           {errors.password && (

@@ -131,6 +131,7 @@ const RegistrationForm = () => {
           <input
             className="form_input"
             {...register("password2")}
+            type="password"
             placeholder="Enter your password"
           />
           {errors.password2 && (
