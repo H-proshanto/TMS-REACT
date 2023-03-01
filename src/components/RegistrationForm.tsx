@@ -1,11 +1,11 @@
-import React, { useEffect } from "react";
-import logo from "../assets/logo.png";
-import { useForm, Resolver } from "react-hook-form";
-import "../styles/LoginForm.css";
-import { formErrorObject, RegistrationFormData } from "../react-app-env";
-import { registration } from "../utils/redux/states/user";
+import { useEffect } from "react";
+import { Resolver, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import logo from "../assets/logo.png";
+import { formErrorObject, RegistrationFormData } from "../react-app-env";
+import "../styles/LoginForm.css";
 import { useAppDispatch, useAppSelector } from "../utils/redux/hooks";
+import { registration, resetStatus } from "../utils/redux/states/user";
 
 type FormErrors = {
   name?: formErrorObject;
@@ -76,6 +76,7 @@ const RegistrationForm = () => {
     }
     if (status === "error") {
       window.alert("Something Occured, Please try again later");
+      dispatch(resetStatus());
     }
   }, [status]);
 
