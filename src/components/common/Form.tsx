@@ -6,15 +6,14 @@ import {
   InputItem,
   MemberFormData,
   MemberItem,
-  TaskFormData,
+  TaskFormData
 } from "../../react-app-env";
 import "../../styles/Form.css";
 import { getTitle } from "../../utils/helpers/common";
 import {
-  dispacthFnSelector,
-  onSubmitFnSelector,
+  onSubmitFnSelector
 } from "../../utils/helpers/submit-btn";
-import { useAppDispatch, useAppSelector } from "../../utils/redux/hooks";
+import { useAppSelector } from "../../utils/redux/hooks";
 
 const Form: React.FC<{
   resolver: Resolver<MemberFormData, any> | Resolver<TaskFormData, any>;
@@ -107,7 +106,7 @@ const Form: React.FC<{
               <select {...register("memberId")} className="member_list">
                 {memberList.map((memerItem: MemberItem, index: number) => {
                   return (
-                    <option key={index} value={memerItem.id}>
+                    <option key={index} value={memerItem.id} selected={memerItem.id === options.item.memberId}>
                       {memerItem.name}
                     </option>
                   );

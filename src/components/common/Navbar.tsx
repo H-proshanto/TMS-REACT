@@ -1,16 +1,16 @@
 import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
+import logo from "../../assets/logo.png";
 import { NavItem } from "../../react-app-env";
 import "../../styles/Navbar.css";
 import { useAppDispatch, useAppSelector } from "../../utils/redux/hooks";
 import { logout } from "../../utils/redux/states/user";
-import logo from "../../assets/logo.png";
 
 const Navbar: React.FC<{ navItemList: NavItem[] }> = ({ navItemList }) => {
   const { info, isLoggedIn } = useAppSelector((state) => state?.user);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  console.log("hello");
+
   const handleClick = () => {
     dispatch(logout());
     navigate("/login", { replace: true });
