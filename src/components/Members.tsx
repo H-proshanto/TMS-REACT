@@ -1,9 +1,11 @@
 import React, { useEffect } from "react";
+import { Helmet } from "react-helmet";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import { MemberItem } from "../react-app-env";
 import "../styles/Member.css";
 import { getAllMembers } from "../utils/api/private/members";
-import { useAppDispatch } from "../utils/redux/hooks";
+import { getTaskCount } from "../utils/helpers/members";
+import { useAppDispatch, useAppSelector } from "../utils/redux/hooks";
 import { setMemberList } from "../utils/redux/states/member";
 
 export const membersLoader = async () => {
@@ -16,6 +18,7 @@ export const membersLoader = async () => {
 
 const Members = () => {
   const memberList = useLoaderData() as MemberItem[];
+  const taskList = useAppSelector((state) => state.taskList);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
@@ -29,6 +32,9 @@ const Members = () => {
 
   return (
     <div className="title_container">
+      <Helmet>
+        <title>Member List</title>
+      </Helmet>
       <section>
         <h3>All Members</h3>
         <p className="title_description task_description">
@@ -57,7 +63,9 @@ const Members = () => {
                   >
                     {memberItem.name}
                   </button>
-                  <p className="member_item_right">{2}</p>
+                  <p className="member_item_right">
+                    {getTaskCount(taskList, memberItem.id)}
+                  </p>
                 </li>
               );
             })}

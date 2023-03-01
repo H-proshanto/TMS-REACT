@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { Helmet } from "react-helmet";
 import { Resolver, useForm } from "react-hook-form";
 import { useLocation, useNavigate } from "react-router-dom";
 import {
@@ -8,6 +9,7 @@ import {
   TaskFormData,
 } from "../../react-app-env";
 import "../../styles/Form.css";
+import { getTitle } from "../../utils/helpers/common";
 import {
   dispacthFnSelector,
   onSubmitFnSelector,
@@ -23,8 +25,8 @@ const Form: React.FC<{
   const memberList = useAppSelector((state) => state.memberList);
   const location = useLocation();
   const navigate = useNavigate();
-  const dispatch = useAppDispatch();
   const options = location?.state;
+  const title: string = getTitle(location.pathname);
   const {
     register,
     formState: { errors },
@@ -55,6 +57,9 @@ const Form: React.FC<{
 
   return (
     <div className="form_container">
+      <Helmet>
+        <title>{title}</title>
+      </Helmet>
       <h4>{pageTitle}</h4>
       <form
         onSubmit={handleSubmit(
