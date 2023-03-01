@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { Helmet } from "react-helmet";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import { TaskItem } from "../react-app-env";
 import "../styles/Task.css";
@@ -29,6 +30,9 @@ const Tasks = () => {
 
   return (
     <div className="title_container">
+      <Helmet>
+        <title>Task List</title>
+      </Helmet>
       <section>
         <h3>Welcome to task management system</h3>
         <p className="title_description task_description">

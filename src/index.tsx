@@ -21,6 +21,7 @@ import {
   taskFormResolver,
 } from "./utils/helpers/resolvers";
 import ItemView, { loader as itemLoader } from "./components/common/ItemView";
+import { Helmet } from "react-helmet";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -64,7 +65,6 @@ const router = createBrowserRouter([
             pageTitle="Edit member"
           />
         ),
-        // loader: SingleMemberLoader,
       },
       {
         path: "/members/add",
@@ -116,6 +116,9 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <RouterProvider router={router} />
+      <Helmet>
+        <title>Task Manager</title>
+      </Helmet>
     </Provider>
   </React.StrictMode>
 );

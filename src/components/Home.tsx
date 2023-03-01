@@ -1,4 +1,5 @@
 import * as React from "react";
+import { Helmet } from "react-helmet";
 import { useDispatch } from "react-redux";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import { MemberItem, TaskItem } from "../react-app-env";
@@ -35,6 +36,9 @@ const Home = () => {
 
   return (
     <div className="title_container">
+      <Helmet>
+        <title>Home</title>
+      </Helmet>
       <section>
         <h3>Welcome to task management system</h3>
         <p className="title_description">
