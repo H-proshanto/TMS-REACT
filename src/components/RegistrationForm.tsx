@@ -74,6 +74,9 @@ const RegistrationForm = () => {
     if (status === "resolved") {
       navigate("/home", { replace: false });
     }
+    if (status === "error") {
+      window.alert("Something Occured, Please try again later");
+    }
   }, [status]);
 
   return (

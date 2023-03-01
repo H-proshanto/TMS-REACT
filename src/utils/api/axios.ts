@@ -10,7 +10,7 @@ privateAxios.interceptors.response.use(
     return response;
   },
   (error) => {
-    window.alert("Something Occured");
+    window.alert("Something Occured,Please try again later");
     return error;
   }
 );

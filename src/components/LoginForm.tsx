@@ -53,6 +53,9 @@ const LoginForm = () => {
     if (status === "resolved") {
       navigate("/home", { replace: false });
     }
+    if (status === "error") {
+      window.alert("Something Occured, Please try again later");
+    }
   }, [status]);
 
   const {
